@@ -20,44 +20,26 @@ public class MainActivity extends AppCompatActivity {
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
+                Fragment fragment = null;
                 switch (tabId){
                     case R.id.tab_favorites:
-                        displayView(1);
+                        fragment = new FragmentLibrary();
                         break;
                     case R.id.tab_friends:
-                        displayView(2);
+                        fragment = new FragmentMyMusic();
+                        break;
+                    case R.id.tab_clips:
+                        fragment = new FragmentClips();
                         break;
                 }
 
+                if (fragment != null) {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.contentContainer, fragment);
+                    fragmentTransaction.commit();
+                }
             }
         });
-    }
-
-
-    public void displayView(int position) {
-
-        Fragment fragment = null;
-        String title = getString(R.string.app_name);
-        switch (position) {
-            case 0:
-                fragment = new FragmentMyMusic();
-                break;
-            case 1:
-                fragment = new FragmentLibrary();
-                break;
-            case 2:
-                fragment = new FragmentMyMusic();
-                break;
-            default:
-                break;
-        }
-
-        if (fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contentContainer, fragment);
-            fragmentTransaction.commit();
-            getSupportActionBar().setTitle(title);
-        }
     }
 }

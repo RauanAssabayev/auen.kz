@@ -24,10 +24,7 @@ public class FragmentMyMusic extends Fragment implements MediaPlayer.OnPreparedL
     MediaPlayer mediaPlayer;
     AudioManager am;
     CheckBox chbLoop;
-
-
-    public FragmentMyMusic() {
-    }
+    public FragmentMyMusic() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,16 +49,16 @@ public class FragmentMyMusic extends Fragment implements MediaPlayer.OnPreparedL
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         am = (AudioManager) getActivity().getSystemService(AUDIO_SERVICE);
-        chbLoop = (CheckBox) getActivity().findViewById(R.id.chbLoop);
-        chbLoop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
-                if (mediaPlayer != null)
-                    mediaPlayer.setLooping(isChecked);
-            }
-        });
-    }
+//        chbLoop = (CheckBox) getActivity().findViewById(R.id.chbLoop);
+//        chbLoop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView,
+//                                         boolean isChecked) {
+//                if (mediaPlayer != null)
+//                    mediaPlayer.setLooping(isChecked);
+//            }
+//        });
+  }
 
     @Override
     public void onAttach(Activity activity) {
@@ -95,7 +92,7 @@ public class FragmentMyMusic extends Fragment implements MediaPlayer.OnPreparedL
         if (mediaPlayer == null)
             return;
 
-        mediaPlayer.setLooping(chbLoop.isChecked());
+//        mediaPlayer.setLooping(chbLoop.isChecked());
         mediaPlayer.setOnCompletionListener(this);
     }
 
@@ -110,41 +107,38 @@ public class FragmentMyMusic extends Fragment implements MediaPlayer.OnPreparedL
         }
     }
 
-
-    public void onClick(View view) {
+   public void onClick(View view) {
         if (mediaPlayer == null)
             return;
         switch (view.getId()) {
-            case R.id.btnPause:
-                if (mediaPlayer.isPlaying())
-                    mediaPlayer.pause();
-                break;
-            case R.id.btnResume:
-                if (!mediaPlayer.isPlaying())
-                    mediaPlayer.start();
-                break;
-            case R.id.btnStop:
-                mediaPlayer.stop();
-                break;
-            case R.id.btnBackward:
-                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() - 3000);
-                break;
-            case R.id.btnForward:
-                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() + 3000);
-                break;
-            case R.id.btnInfo:
-                Log.d(LOG_TAG, "Playing " + mediaPlayer.isPlaying());
-                Log.d(LOG_TAG, "Time " + mediaPlayer.getCurrentPosition() + " / "
-                        + mediaPlayer.getDuration());
-                mediaPlayer.seekTo(200000);
-                Log.d(LOG_TAG, "Looping " + mediaPlayer.isLooping());
-                Log.d(LOG_TAG,
-                        "Volume " + am.getStreamVolume(AudioManager.STREAM_MUSIC));
-                break;
-
-        }
-    }
-
+//            case R.id.btnPause:
+//                if (mediaPlayer.isPlaying())
+//                    mediaPlayer.pause();
+//                break;
+//            case R.id.btnResume:
+//                if (!mediaPlayer.isPlaying())
+//                    mediaPlayer.start();
+//                break;
+//            case R.id.btnStop:
+//                mediaPlayer.stop();
+//                break;
+//            case R.id.btnBackward:
+//                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() - 3000);
+//                break;
+//            case R.id.btnForward:
+//                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() + 3000);
+//                break;
+//            case R.id.btnInfo:
+//                Log.d(LOG_TAG, "Playing " + mediaPlayer.isPlaying());
+//                Log.d(LOG_TAG, "Time " + mediaPlayer.getCurrentPosition() + " / "
+//                        + mediaPlayer.getDuration());
+//                mediaPlayer.seekTo(200000);
+//                Log.d(LOG_TAG, "Looping " + mediaPlayer.isLooping());
+//                Log.d(LOG_TAG,
+//                        "Volume " + am.getStreamVolume(AudioManager.STREAM_MUSIC));
+//                break;
+       }
+   }
 
     @Override
     public void onPrepared(MediaPlayer mp) {
@@ -152,11 +146,11 @@ public class FragmentMyMusic extends Fragment implements MediaPlayer.OnPreparedL
         mp.start();
         Log.d(LOG_TAG, "onStart");
     }
+
     @Override
     public void onCompletion(MediaPlayer mp) {
         Log.d(LOG_TAG, "onCompletion");
     }
-
 
     @Override
     public void onDestroy() {

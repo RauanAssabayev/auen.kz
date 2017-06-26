@@ -25,16 +25,16 @@ public class playMusic_fragment extends Activity implements OnPreparedListener, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         am = (AudioManager) getSystemService(AUDIO_SERVICE);
-        chbLoop = (CheckBox) findViewById(R.id.chbLoop);
-        chbLoop.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
-                if (mediaPlayer != null)
-                    mediaPlayer.setLooping(isChecked);
-            }
-        });
-    }
+//        chbLoop = (CheckBox) findViewById(R.id.chbLoop);
+//        chbLoop.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView,
+//                                         boolean isChecked) {
+//                if (mediaPlayer != null)
+//                    mediaPlayer.setLooping(isChecked);
+//            }
+//        });
+   }
 
     public void onClickStart(View view) {
         releaseMP();
@@ -74,37 +74,37 @@ public class playMusic_fragment extends Activity implements OnPreparedListener, 
 
 
     public void onClick(View view) {
-        if (mediaPlayer == null)
-            return;
-        switch (view.getId()) {
-            case R.id.btnPause:
-                if (mediaPlayer.isPlaying())
-                    mediaPlayer.pause();
-                break;
-            case R.id.btnResume:
-                if (!mediaPlayer.isPlaying())
-                    mediaPlayer.start();
-                break;
-            case R.id.btnStop:
-                mediaPlayer.stop();
-                break;
-            case R.id.btnBackward:
-                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() - 3000);
-                break;
-            case R.id.btnForward:
-                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() + 3000);
-                break;
-            case R.id.btnInfo:
-                Log.d(LOG_TAG, "Playing " + mediaPlayer.isPlaying());
-                Log.d(LOG_TAG, "Time " + mediaPlayer.getCurrentPosition() + " / "
-                        + mediaPlayer.getDuration());
-                mediaPlayer.seekTo(200000);
-                Log.d(LOG_TAG, "Looping " + mediaPlayer.isLooping());
-                Log.d(LOG_TAG,
-                        "Volume " + am.getStreamVolume(AudioManager.STREAM_MUSIC));
-                break;
-
-        }
+//        if (mediaPlayer == null)
+//            return;
+//        switch (view.getId()) {
+//            case R.id.btnPause:
+//                if (mediaPlayer.isPlaying())
+//                    mediaPlayer.pause();
+//                break;
+//            case R.id.btnResume:
+//                if (!mediaPlayer.isPlaying())
+//                    mediaPlayer.start();
+//                break;
+//            case R.id.btnStop:
+//                mediaPlayer.stop();
+//                break;
+//            case R.id.btnBackward:
+//                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() - 3000);
+//                break;
+//            case R.id.btnForward:
+//                mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() + 3000);
+//                break;
+//            case R.id.btnInfo:
+//                Log.d(LOG_TAG, "Playing " + mediaPlayer.isPlaying());
+//                Log.d(LOG_TAG, "Time " + mediaPlayer.getCurrentPosition() + " / "
+//                        + mediaPlayer.getDuration());
+//                mediaPlayer.seekTo(200000);
+//                Log.d(LOG_TAG, "Looping " + mediaPlayer.isLooping());
+//                Log.d(LOG_TAG,
+//                        "Volume " + am.getStreamVolume(AudioManager.STREAM_MUSIC));
+//                break;
+//
+//        }
     }
     @Override
     public void onPrepared(MediaPlayer mp) {

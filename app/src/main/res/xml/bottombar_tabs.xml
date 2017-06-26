@@ -12,7 +12,7 @@
         icon="@drawable/ic_queue_music"
         title="Friends" />
     <tab
-        id="@+id/tab_aaa"
+        id="@+id/tab_clips"
         icon="@drawable/ic_music_video"
         title="Friends" />
     <tab
