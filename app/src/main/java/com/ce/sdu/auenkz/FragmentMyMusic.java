@@ -1,11 +1,23 @@
 package com.ce.sdu.auenkz;
 
 import android.app.Activity;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +25,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -23,6 +37,7 @@ public class FragmentMyMusic extends Fragment implements MediaPlayer.OnPreparedL
     final String DATA_HTTP = "http://a1.spacebro.net//2/a/gt/ki/8b/kf/gtki8bkf.mp3?id=gtki8bkf";
     MediaPlayer mediaPlayer;
     AudioManager am;
+    ImageView coverAlbum;
     CheckBox chbLoop;
     public FragmentMyMusic() {}
 
@@ -45,6 +60,25 @@ public class FragmentMyMusic extends Fragment implements MediaPlayer.OnPreparedL
         return rootView;
     }
 
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap
+                .getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+        final float roundPx = pixels;
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+        return output;
+    }
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -58,6 +92,8 @@ public class FragmentMyMusic extends Fragment implements MediaPlayer.OnPreparedL
 //                    mediaPlayer.setLooping(isChecked);
 //            }
 //        });
+
+
   }
 
     @Override
@@ -83,6 +119,10 @@ public class FragmentMyMusic extends Fragment implements MediaPlayer.OnPreparedL
                     Log.d(LOG_TAG, "prepareAsync");
                     mediaPlayer.setOnPreparedListener(this);
                     mediaPlayer.prepareAsync();
+                    coverAlbum = (ImageView) getActivity().findViewById(R.id.albumCover);
+                    Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.ic_3d_rotation);
+                    coverAlbum.setImageBitmap(getRoundedCornerBitmap(icon ,10));
+                    Toast.makeText(getActivity().getApplicationContext(),"MAIN",Toast.LENGTH_LONG).show();
                     break;
             }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -15,19 +15,22 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:background="@android:color/background_light"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/albumCover"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="360dp"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:layout_margin="20dp"
             android:layout_above="@+id/songProgressBar"
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_weight="0.85"
             app:srcCompat="@drawable/album_cover" />
 
         <SeekBar
@@ -37,12 +40,10 @@
             android:layout_above="@+id/linearLayout1"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="58dp"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:splitTrack="false"
             android:progressDrawable="@drawable/seekbar_progress_bg"
+            android:splitTrack="false"
             android:thumb="@drawable/thubm" />
+
 
         <Button
             android:id="@+id/btnStartHttp"
@@ -51,11 +52,11 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:onClick="onClickStart"
             android:text="@string/http"
-
-            android:textSize="12sp"></Button>
+            android:textSize="12sp" />
     </LinearLayout>
+
+
 
 
 </RelativeLayout>
